@@ -43,15 +43,8 @@ app.post('/ingresar', function (req,res){
   if (req.body.nombre) {
     req.session.nombre = req.body.nombre
   }
-  res.redirect('/');
+  res.redirect('/admin/login');
 });
-
-app.get('/salir', function (req,res){
-  req.session.destroy()
-  res.redirect('admin/login')
-});
-
-
 
 
 app.use('/', indexRouter);
