@@ -4,11 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
 var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/admin/login');
+var adminRouter = require('./routes/admin/novedades')
 
 var app = express();
 
@@ -24,32 +26,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: 'asdhvbajsdadlkj',
+  cookie: {maxAge: null},
   resave: false,
   saveUninitialized: true,
-}));
+}))
 
-app.get('/', function (req, res) {
-  var conocido = Boolean(req.session.nombre);
-
-  res.render('admin/login', {
-    title: 'Sesiones en Express.js',
-    conocido: conocido,
-    nombre: req.session.nombre
-  });
-
-});
-
-app.post('/ingresar', function (req,res){
-  if (req.body.nombre) {
-    req.session.nombre = req.body.nombre
+secured = async(req,res,next) => {
+  try{
+      console.log(req.session.id_usuario);
+      if(req.session.id_usuario){
+          next();
+      } else {
+          res.redirect('/admin/login');
+      }
+  }catch(error){
+      console.log(error);
   }
-  res.redirect('/admin/login');
-});
-
+}
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin/login', loginRouter);
+app.use('/admin/novedades',secured, adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

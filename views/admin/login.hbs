@@ -3,9 +3,33 @@
 <p>Hola {{nombre}} <a href="/admin/login/salir">Salir</a></p>
 {{/if}}
 
-{{#unless conocido}}
+<div class="container">
+    <form action="/admin/login" method="post">
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Usuario</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputUser" name="usuario">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword" name="password">
+        </div>
+    </div>
+        <button type="submit" style="margin-left: 47%" class="btn btn-primary">Ingresar</button>
+    </form>
+    {{#if error}}
+        <p>Usuario y/o contraseña incorrectos</p>
+    {{/if}}
+</div>
+
+
+
+
+{{!-- {{#unless conocido}}
 <p>No te conozco</p>
 <form action="/admin/login/ingresar" method="post">
     <input type="text" name="nombre"><button>ingresar</button>
 </form>
-{{/unless}}
+{{/unless}} --}}
