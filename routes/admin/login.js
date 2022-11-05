@@ -43,18 +43,4 @@ router.post('/', async (req, res, next) => {
 
 });
 
-
-// router.post('/ingresar', function (req, res) {
-//     if (req.body.nombre) {
-//         req.session.nombre = req.body.nombre
-//     }
-//     res.redirect('/admin/login');
-// });
-
-
-// router.get('/salir', function (req, res) {
-//     req.session.destroy()
-//     res.redirect('/admin/login')
-// });
-
 module.exports = router;
