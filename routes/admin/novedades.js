@@ -29,7 +29,7 @@ router.post('/agregar', async (req, res, next) => {
             await novedadesModel.insertNovedad(req.body);
             res.redirect('/admin/novedades')
         } else {
-            res.render ('admin/agregar', {
+            res.render('admin/agregar', {
                 layout: 'admin/layout',
                 error: true,
                 message: 'Todos los campos son requeridos'
@@ -44,5 +44,16 @@ router.post('/agregar', async (req, res, next) => {
         })
     }
 })
+
+// eliminar
+
+router.get('/eliminar/:id', async (req, res, next) => {
+    let id = req.params.id;
+
+    await novedadesModel.deleteNovedadesById(id);
+    res.redirect('/admin/novedades')
+});
+
+// fin eliminar
 
 module.exports = router;
