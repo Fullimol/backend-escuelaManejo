@@ -1,0 +1,28 @@
+h2{
+    text-align: center;
+    margin: 30px
+}
+
+.container{
+    margin: 20px auto;
+}
+
+.col-sm-10{
+    width: 20%;
+}
+
+.area{
+    justify-content: center;
+    text-align: center;
+}
+
+.error p{
+    text-align: center;
+    color: red;
+    margin-top: 20px;
+    font-size: larger;
+}
+
+form button{
+    margin: 20px;
+}
