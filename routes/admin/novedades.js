@@ -13,7 +13,7 @@ router.get('/', async function (req, res, next) {
         novedades
     });
 });
-// fin listar novedades
+// FIN listar novedades
 
 // boton "NUEVO" agregar novedad
 router.get('/agregar', (req, res, next) => {
@@ -21,6 +21,7 @@ router.get('/agregar', (req, res, next) => {
         layout: 'admin/layout'
     })
 })
+// FIN boton "NUEVO" agregar novedad
 
 // insertar la novedad
 router.post('/agregar', async (req, res, next) => {
@@ -44,6 +45,7 @@ router.post('/agregar', async (req, res, next) => {
         })
     }
 })
+// FIN insertar la novedad
 
 // eliminar
 
@@ -54,6 +56,43 @@ router.get('/eliminar/:id', async (req, res, next) => {
     res.redirect('/admin/novedades')
 });
 
-// fin eliminar
+// FIN eliminar
+
+// modificar la vista > formulario y los datos cargados
+
+router.get('/modificar/:id', async (req, res, next) => {
+    var id = req.params.id;
+    var novedad = await novedadesModel.getNovedadesById(id);
+
+    res.render('admin/modificar', {
+        layout: 'admin/layout',
+        novedad
+    })
+});
+// FIN modificar la vista > formulario y los datos cargados
+
+// actualizar novedad a la BS
+router.post('/modificar', async (req, res, next) => {
+    try {
+        var obj = {
+            titulo: req.body.titulo,
+            subtitulo: req.body.subtitulo,
+            cuerpo: req.body.cuerpo
+        }
+
+        await novedadesModel.modificarNovedadById(obj, req.body.id);
+        res.redirect('/admin/novedades');
+    } catch (error) {
+        console.log(error)
+        res.render('admin/modificar', {
+            layout: 'admin/layout',
+            error: true,
+            message: 'No se pudo modificar la novedad'
+        })
+    }
+})
+
+
+// FIN actualizar novedad a la BS
 
 module.exports = router;

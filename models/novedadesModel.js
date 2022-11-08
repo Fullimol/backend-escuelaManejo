@@ -24,4 +24,25 @@ async function deleteNovedadesById(id){
 }
 
 
-module.exports = {getNovedades, insertNovedad, deleteNovedadesById}
+// traiga novedad por ID
+async function getNovedadesById(id){
+        var query = "select * from novedades where id = ?";
+        var rows = await pool.query(query, [id]);
+        return rows[0];
+}
+
+
+// actualice la novedad a la BS
+
+async function modificarNovedadById(obj, id) {
+        try {
+                var query = 'update novedades set ? where id=?';
+                var rows = await pool.query(query, [obj, id]);
+                return rows;
+        } catch (error) {
+                throw error;
+        }
+}
+
+
+module.exports = {getNovedades, insertNovedad, deleteNovedadesById, getNovedadesById, modificarNovedadById}
