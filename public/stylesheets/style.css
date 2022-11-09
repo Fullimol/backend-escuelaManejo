@@ -25,6 +25,12 @@ footer {
   text-align: center;
   background-color: #bbb;
   height: 55px;
+
+
+ /* esto deja el footer fijo */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 footer p {
