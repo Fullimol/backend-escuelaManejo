@@ -10,13 +10,14 @@
     </div>
     {{!-- fin fila 2 --}}
     {{!-- Fila 3 --}}
-    <div class="row">
+    <div class="row" style="margin-bottom: 45px">
         <div class="col">
             <table class="table">
                 <thead>
                     <tr class="table-dark">
                         <th scope="col">#</th>
                         <th scope="col">Titulo</th>
+                        <th scope="col">Imagen</th>
                         <th class="text-end">Acciones</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@
                     <tr>
                         <th scope="row">{{id}}</th>
                         <td>{{titulo}}</td>
+                        <td>{{{imagen}}}</td>
                         <td class="text-end">
                             <a class="btn btn-secondary" href="/admin/novedades/modificar/{{id}}"> <i class="fa fa-pencil" aria-hidden="true"></i> </a>
                             <a class="btn btn-secondary" href="/admin/novedades/eliminar/{{id}}"> <i class="fa fa-trash" aria-hidden="true"></i> </a>

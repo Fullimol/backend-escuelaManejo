@@ -1,21 +1,28 @@
 <div class="conainer" style="margin: 85px;">
     <div>
         <div class="col-6 offset-3">
-            <h1 style="text-align: center; margin-bottom: 50px; margin-top: -50px">Agregar novedad</h1>
-            <form action="/admin/novedades/agregar" method="post">
-                <input class="mb-3 row form-control form-control-lg" type="text" name="titulo" placeholder="Título" aria-label=".form-control-lg example">
-                <input class="mb-3 row form-control" type="text" name="subtitulo" placeholder="Subtitulo" aria-label="default input example">
-                    <div style="display:flex; justify-content:center" class="form-group">
-                    <textarea placeholder="Cuerpo" name="cuerpo" cols="85" rows="10"></textarea>
+            <h1 style="text-align: center; margin-bottom: 30px; margin-top: -60px">Agregar novedad</h1>
+            <form action="/admin/novedades/agregar" method="post" enctype="multipart/form-data">
+                <input class="mb-3 row form-control form-control-lg" type="text" name="titulo" placeholder="Título"
+                    aria-label=".form-control-lg example">
+                <input class="mb-3 row form-control" type="text" name="subtitulo" placeholder="Subtitulo"
+                    aria-label="default input example">
+                <div style="display:flex; justify-content:center" class="form-group">
+                    <textarea placeholder="Cuerpo" name="cuerpo" cols="85" rows="8"></textarea>
                 </div>
+                <div class="mb-3" style="text-align: center;">
+                    <label>Adjuntar imagen: <input type="file" class="form-control" name="imagen" id="imagen" /></label>
+                </div>
+                {{#if error}}
+                <p style="text-align: center;color: red;font-size: larger;">{{message}}</p>
+                {{/if}}
                 <div style="text-align: center;">
-                    <button style="margin-top: 20px; margin-bottom: -50px;" type="submit" class="btn btn-primary">Guardar</button>
-                    <button style="margin-top: 20px; margin-bottom: -50px; margin-left: 10px" type="button" class="btn btn-secondary"><a href="/admin/novedades" style="text-decoration:none; color:white">Cancelar</a></button>
+                    <button style="margin-bottom: -20px;" type="submit" class="btn btn-primary">Guardar</button>
+                    <button style="margin-bottom: -20px; margin-left: 10px" type="button" class="btn btn-secondary"><a
+                            href="/admin/novedades" style="text-decoration:none; color:white">Cancelar</a></button>
                 </div>
             </form>
-            {{#if error}}
-                <p style="text-align: center;color: red;font-size: larger;margin-top: 50px;">{{message}}</p>
-            {{/if}}
+
         </div>
     </div>
 </div>
